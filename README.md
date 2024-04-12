@@ -17,6 +17,7 @@ git merge main
 当然这个的优点就是缺点，尽管merge commit信息很多，但有些还是很宝贵，例子如下
 M点的commit信息清楚展示时间线，以及在C点的时候把main信息更新到feature
 如果把下面的DE rebase，那么就看不到M的信息了
+```
    A---B---C (main)
     \     \
      \     M---N (feature with merge commit)
@@ -27,9 +28,10 @@ M点的commit信息清楚展示时间线，以及在C点的时候把main信息�
  A---B---C (main)
            \
             D'---E' (feature after rebase)       
+```
 
 时刻遵循： Golden Rule of Rebasing: Never rebase a branch that is public (shared with others) unless you are certain that nobody else is working with those branches or you've communicated with your team and they understand the implications.， 尽量自己一个人用
-
+```
 git checkout feature
 git rebase main
 A---B---C (main)
@@ -39,6 +41,7 @@ A---B---C (main)
 A---B---C (main)
          \
           D'---E' (feature)
+```
 
 有关automated tebase 和 interactive rebase 自动和交互式
 interactive 的rebase方式能够在分享给他人的时候清除commit history
@@ -51,6 +54,7 @@ interactive 的rebase方式能够在分享给他人的时候清除commit history
 为什么有这个东西
 ● 在merging或者提交之前，把本地的commits信息打磨一下，把我们的feature branch打磨干净后才上传到共享库
 怎么用
+```
 For example, if the 2nd commit fixes a small problem in the 1st commit
 you can condense them into a single commit with the fixup command:
 
@@ -68,4 +72,6 @@ pick 5c67e61 Message for commit #3
 # f, fixup <commit> = like "squash", but discard this commit's log message
 # x, exec <commit> = run command (the rest of the line) using shell
 # d, drop <commit> = remove commit
+```
+s
 By changing the word pick to another command (reword, edit, squash, fixup, drop), you can perform any of the aforementioned actions 上述行动 on the respective commits.
